@@ -1,6 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { Coffee } from './entities/coffee.entity';
-import { NotFoundError } from 'rxjs';
+
 
 @Injectable()
 export class CoffeesService {
