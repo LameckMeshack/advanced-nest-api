@@ -1,5 +1,5 @@
 import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
-import { Observable, map, tap } from 'rxjs';
+import { Observable, map } from 'rxjs';
 
 @Injectable()
 export class WrapResponseInterceptor implements NestInterceptor {
