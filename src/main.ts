@@ -5,6 +5,7 @@ import { ValidationPipe } from '@nestjs/common';
 // import { ApiKeyGuard } from './common/guards/api-key.guard';
 import { WrapResponseInterceptor } from './common/interceptors/wrap-response.interceptor';
 import { TimeoutInterceptor } from './common/interceptors/timeout.interceptor';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -19,9 +20,18 @@ async function bootstrap() {
     }),
   );
 
+  const options = new DocumentBuilder()
+    .setTitle('Iluvcoffee ')
+    .setDescription('The iluvcoffee API description')
+    .setVersion('1.0')
+    .addTag('iluvcoffee')
+    .build();
+
+  const document = SwaggerModule.createDocument(app, options)
+  SwaggerModule.setup('api', app, document);
   // app.useGlobalFilters(new HttpExceptionFilter());
   // app.useGlobalGuards(new ApiKeyGuard())
-  app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptor())
+  // app.useGlobalInterceptors(new WrapResponseInterceptor(), new TimeoutInterceptor())
   await app.listen(3000);
 }
 bootstrap();
