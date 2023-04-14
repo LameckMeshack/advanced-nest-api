@@ -20,11 +20,11 @@ export class CoffeesController {
   constructor(private readonly coffeesService: CoffeesService) { }
   @Get()
   @Public()
-  findAll(
-    @Query() paginationQuery: PaginationQueryDto,
-  ) {
+  async findAll(@Query() paginationQuery: PaginationQueryDto) {
+    await new Promise(resolve => setTimeout(resolve, 5000));
     return this.coffeesService.findAll(paginationQuery);
   }
+
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.coffeesService.findOne('' + id);
